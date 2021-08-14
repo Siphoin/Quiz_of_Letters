@@ -10,8 +10,6 @@ namespace UI
 {
     public class RestartWindow : MonoBehaviour
     {
-        [Header("Скорость затухания заднего фона"), SerializeField]
-        private float _speedAttenuation = 1;
 
         [Header("Кнопка перезапуска сцены"), SerializeField]
         private Button _buttonRestart;
@@ -68,16 +66,9 @@ namespace UI
 
         private void PlayFadeAnimationBackground (Color startColor, Color endColor)
         {
-            _background.material.DOFadeColor(startColor, endColor, _speedAttenuation);
-        }
-        private void OnValidate ()
-        {
-            if (_speedAttenuation <= 0)
-            {
-                _speedAttenuation = 1;
-            }
+            _background.material.DOFadeColor(startColor, endColor, _colorTransitionBackground.Duration);
         }
 
-        private void DestroyWindow() => Destroy(gameObject, _speedAttenuation);
+        private void DestroyWindow() => Destroy(gameObject, _colorTransitionBackground.Duration);
     }
 }

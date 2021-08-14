@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: stars_ColorTransions
   m_EditorClassIdentifier: 
   _transitions:
+    _duration: 10
     _startColor: {r: 1, g: 0.9742207, b: 0, a: 1}
     _endColor: {r: 1, g: 0.972549, b: 0, a: 0}

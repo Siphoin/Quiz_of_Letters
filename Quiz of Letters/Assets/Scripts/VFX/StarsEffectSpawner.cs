@@ -19,7 +19,6 @@ namespace VFX
 
         private ParticleSystem _activeEffectStars;
 
-        private ParticleSystemRenderer _particleSystemRenderer;
 
        private void Start () => Init();
 
@@ -51,8 +50,8 @@ namespace VFX
             _activeEffectStars.transform.position = transform.position;
             _activeEffectStars.transform.SetParent(transform);
 
-            _particleSystemRenderer = _activeEffectStars.GetComponent<ParticleSystemRenderer>();
-            _particleSystemRenderer.material.DOFadeColor(_colorTransitionStars.StartColor, _colorTransitionStars.EndColor, 10);
+           ParticleSystemRenderer renderParticles = _activeEffectStars.GetComponent<ParticleSystemRenderer>();
+            renderParticles.material.DOFadeColor(_colorTransitionStars.StartColor, _colorTransitionStars.EndColor, _colorTransitionStars.Duration);
 
         }
 
