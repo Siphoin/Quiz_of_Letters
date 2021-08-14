@@ -140,13 +140,7 @@ namespace Level
             OnRestartLevel?.Invoke();
 
         }
-
-        private void UncribeRestartWindowEvents ()
-        {
-            _activeRestartWindow.OnRestartButtonTapped -= RestartGame;
-        }
-
-
+        
         private void NextLevel ()
         {
             LevelBundle level = _levels[_currentIndexLevel];
@@ -193,5 +187,7 @@ namespace Level
         }
 
         private void CallEventEndLevel() => OnEndLevels?.Invoke();
+        
+        private void UncribeRestartWindowEvents () => _activeRestartWindow.OnRestartButtonTapped -= RestartGame;
     }
 }

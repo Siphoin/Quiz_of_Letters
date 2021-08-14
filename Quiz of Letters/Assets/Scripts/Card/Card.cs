@@ -8,14 +8,14 @@ using Extensions;
 
 namespace Cards
 {
-    // При перекидывании лучше всего перекидывать и кнопку, т.к эта сущность требует Button, во избежании исключений.
-    // + Unity не даст удалить компонент Button
+    // РџСЂРё РїРµСЂРµРєРёРґС‹РІР°РЅРёРё Р»СѓС‡С€Рµ РІСЃРµРіРѕ РїРµСЂРµРєРёРґС‹РІР°С‚СЊ Рё РєРЅРѕРїРєСѓ, С‚.Рє СЌС‚Р° СЃСѓС‰РЅРѕСЃС‚СЊ С‚СЂРµР±СѓРµС‚ Button, РІРѕ РёР·Р±РµР¶Р°РЅРёРё РёСЃРєР»СЋС‡РµРЅРёР№.
+    // + Unity РЅРµ РґР°СЃС‚ СѓРґР°Р»РёС‚СЊ РєРѕРјРїРѕРЅРµРЅС‚ Button
     [RequireComponent(typeof(Button))]
     public class Card : MonoBehaviour
     {
         /// <summary>
-        /// Начальное значение x объекта внутри карточки,
-        /// нужно для предотвращения повтора анимации ease bounce (костыль, но пришлось)
+        /// РќР°С‡Р°Р»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ x РѕР±СЉРµРєС‚Р° РІРЅСѓС‚СЂРё РєР°СЂС‚РѕС‡РєРё,
+        /// РЅСѓР¶РЅРѕ РґР»СЏ РїСЂРµРґРѕС‚РІСЂР°С‰РµРЅРёСЏ РїРѕРІС‚РѕСЂР° Р°РЅРёРјР°С†РёРё ease bounce (РєРѕСЃС‚С‹Р»СЊ, РЅРѕ РїСЂРёС€Р»РѕСЃСЊ)
         /// </summary>
         private float _startXPictogram;
 
@@ -24,21 +24,21 @@ namespace Cards
         private Others.TweenSettings.TweenParams _tweenParamsEaseBounce;
 
         /// <summary>
-        /// Событие, которое сработает, если мы нажмем на карточку. 
-        /// В этот момент мы оповестим слушателя о том, что мы выбрали карточку, слушателю перекинется ID карточки
+        /// РЎРѕР±С‹С‚РёРµ, РєРѕС‚РѕСЂРѕРµ СЃСЂР°Р±РѕС‚Р°РµС‚, РµСЃР»Рё РјС‹ РЅР°Р¶РјРµРј РЅР° РєР°СЂС‚РѕС‡РєСѓ. 
+        /// Р’ СЌС‚РѕС‚ РјРѕРјРµРЅС‚ РјС‹ РѕРїРѕРІРµСЃС‚РёРј СЃР»СѓС€Р°С‚РµР»СЏ Рѕ С‚РѕРј, С‡С‚Рѕ РјС‹ РІС‹Р±СЂР°Р»Рё РєР°СЂС‚РѕС‡РєСѓ, СЃР»СѓС€Р°С‚РµР»СЋ РїРµСЂРµРєРёРЅРµС‚СЃСЏ ID РєР°СЂС‚РѕС‡РєРё
         /// </summary>
         public event UnityAction<string> OnTap;
 
         /// <summary>
-        /// Сама кнопка карточки
+        /// РЎР°РјР° РєРЅРѕРїРєР° РєР°СЂС‚РѕС‡РєРё
         /// </summary>
         /// 
         private Button _button;
 
-        [Header("Пиктограмма"), SerializeField]
+        [Header("РџРёРєС‚РѕРіСЂР°РјРјР°"), SerializeField]
         private Image _pictogram;
 
-        [Header("Данные по переходам"), SerializeField]
+        [Header("Р”Р°РЅРЅС‹Рµ РїРѕ РїРµСЂРµС…РѕРґР°Рј"), SerializeField]
         private CardAnimationSettings _animationSettings;
 
         private CardData _cardData;
@@ -46,15 +46,15 @@ namespace Cards
         private Transform _transformPictogram;
 
         /// <summary>
-        /// Можно ли проигрывать анимация fade in при создании
+        /// РњРѕР¶РЅРѕ Р»Рё РїСЂРѕРёРіСЂС‹РІР°С‚СЊ Р°РЅРёРјР°С†РёСЏ fade in РїСЂРё СЃРѕР·РґР°РЅРёРё
         /// </summary>
         public bool UseFakeInOnStart { get; set; } = true;
         /// <summary>
-        /// Карта является правильной при выборе ответа
+        /// РљР°СЂС‚Р° СЏРІР»СЏРµС‚СЃСЏ РїСЂР°РІРёР»СЊРЅРѕР№ РїСЂРё РІС‹Р±РѕСЂРµ РѕС‚РІРµС‚Р°
         /// </summary>
         public bool IsValidCard { get; set; } = false;
         /// <summary>
-        /// Индентификатор карточки из установленных данных
+        /// РРЅРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РєР°СЂС‚РѕС‡РєРё РёР· СѓСЃС‚Р°РЅРѕРІР»РµРЅРЅС‹С… РґР°РЅРЅС‹С…
         /// </summary>
         public string Indentifier => _cardData != null ? _cardData.Indentifier : null;
 
@@ -75,8 +75,8 @@ namespace Cards
                 throw new NullReferenceException("pictogram not seted on card");
             }
 
-            // вместо GetComponent вызываем TryGetComponent,
-            // чтобы отследить есть ли вообще компонент на объекте, на котором висит этот скрипт, если нет, выбрасываем исключение
+            // РІРјРµСЃС‚Рѕ GetComponent РІС‹Р·С‹РІР°РµРј TryGetComponent,
+            // С‡С‚РѕР±С‹ РѕС‚СЃР»РµРґРёС‚СЊ РµСЃС‚СЊ Р»Рё РІРѕРѕР±С‰Рµ РєРѕРјРїРѕРЅРµРЅС‚ РЅР° РѕР±СЉРµРєС‚Рµ, РЅР° РєРѕС‚РѕСЂРѕРј РІРёСЃРёС‚ СЌС‚РѕС‚ СЃРєСЂРёРїС‚, РµСЃР»Рё РЅРµС‚, РІС‹Р±СЂР°СЃС‹РІР°РµРј РёСЃРєР»СЋС‡РµРЅРёРµ
 
             if (!TryGetComponent(out _button))
             {
@@ -85,8 +85,8 @@ namespace Cards
 
             _transformPictogram = _pictogram.transform;
 
-            // подписываем кнопку на метод Tap, данный способ не даст другим сущностям обращаться к механике тапа карточки, т.к это им это знать не нужно,
-            // + не нужно в редакторе указывать в OnClick
+            // РїРѕРґРїРёСЃС‹РІР°РµРј РєРЅРѕРїРєСѓ РЅР° РјРµС‚РѕРґ Tap, РґР°РЅРЅС‹Р№ СЃРїРѕСЃРѕР± РЅРµ РґР°СЃС‚ РґСЂСѓРіРёРј СЃСѓС‰РЅРѕСЃС‚СЏРј РѕР±СЂР°С‰Р°С‚СЊСЃСЏ Рє РјРµС…Р°РЅРёРєРµ С‚Р°РїР° РєР°СЂС‚РѕС‡РєРё, С‚.Рє СЌС‚Рѕ РёРј СЌС‚Рѕ Р·РЅР°С‚СЊ РЅРµ РЅСѓР¶РЅРѕ,
+            // + РЅРµ РЅСѓР¶РЅРѕ РІ СЂРµРґР°РєС‚РѕСЂРµ СѓРєР°Р·С‹РІР°С‚СЊ РІ OnClick
 
             _button.onClick.AddListener(Tap);
 
@@ -112,12 +112,12 @@ namespace Cards
 
             OnTap?.Invoke(_cardData.Indentifier);
 
-            // Если карта не валидна - дергаем
+            // Р•СЃР»Рё РєР°СЂС‚Р° РЅРµ РІР°Р»РёРґРЅР° - РґРµСЂРіР°РµРј
             if (!IsValidCard && _startXPictogram == _transformPictogram.localPosition.x)
             {
                 EaseInBounceIn();
             }
-            // иначе - fade in внутри карточки
+            // РёРЅР°С‡Рµ - fade in РІРЅСѓС‚СЂРё РєР°СЂС‚РѕС‡РєРё
             else if (IsValidCard)
             {
                 FadePictogram();
@@ -145,13 +145,13 @@ namespace Cards
         }
 
 
-        // P.S Я не нашел готовое решение по фейду, поэтому сделал что-то свое, если все же есть, то извините
+        // P.S РЇ РЅРµ РЅР°С€РµР» РіРѕС‚РѕРІРѕРµ СЂРµС€РµРЅРёРµ РїРѕ С„РµР№РґСѓ, РїРѕСЌС‚РѕРјСѓ СЃРґРµР»Р°Р» С‡С‚Рѕ-С‚Рѕ СЃРІРѕРµ, РµСЃР»Рё РІСЃРµ Р¶Рµ РµСЃС‚СЊ, С‚Рѕ РёР·РІРёРЅРёС‚Рµ
 
         #region Animations
         /// <summary>
-        /// Проигрывывает Fade анимацию
+        /// РџСЂРѕРёРіСЂС‹РІС‹РІР°РµС‚ Fade Р°РЅРёРјР°С†РёСЋ
         /// </summary>
-        /// <param name="transform">Цеель</param>
+        /// <param name="transform">Р¦РµРµР»СЊ</param>
        private void Fade (Transform transform)
         {
             float duration = _tweenParamsFade.Duration;
@@ -160,9 +160,9 @@ namespace Cards
         }
 
         /// <summary>
-        /// Проигрывает анимацию дергания
+        /// РџСЂРѕРёРіСЂС‹РІР°РµС‚ Р°РЅРёРјР°С†РёСЋ РґРµСЂРіР°РЅРёСЏ
         /// </summary>
-        /// <param name="transform">Цеель</param>
+        /// <param name="transform">Р¦РµРµР»СЊ</param>
         private void EaseInBounce (Transform transform)
         {
             float duration = _tweenParamsEaseBounce.Duration;
