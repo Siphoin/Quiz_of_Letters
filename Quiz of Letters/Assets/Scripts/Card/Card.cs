@@ -62,9 +62,6 @@ namespace Cards
 
         private  void Start ()
         {
-                
-            
-
             if (!_animationSettings)
             {
                 throw new NullReferenceException("animation settings not seted on card");
