@@ -22,5 +22,6 @@ namespace Others.ColorTransitions
         public Color StartColor => _startColor;
 
         public Color EndColor => _endColor;
+
     }
 }

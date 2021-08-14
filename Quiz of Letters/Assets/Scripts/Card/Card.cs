@@ -5,6 +5,7 @@ using UnityEngine.Events;
 using DG.Tweening;
 using SO.Cards;
 using Extensions;
+using TweenParams = Others.TweenSettings;
 
 namespace Cards
 {
@@ -19,9 +20,9 @@ namespace Cards
         /// </summary>
         private float _startXPictogram;
 
-        private Others.TweenSettings.TweenParams _tweenParamsFade;
+        private TweenParams.TweenParams _tweenParamsFade;
 
-        private Others.TweenSettings.TweenParams _tweenParamsEaseBounce;
+        private TweenParams.TweenParams _tweenParamsEaseBounce;
 
         /// <summary>
         /// Событие, которое сработает, если мы нажмем на карточку. 
@@ -62,9 +63,6 @@ namespace Cards
 
         private  void Start ()
         {
-                
-            
-
             if (!_animationSettings)
             {
                 throw new NullReferenceException("animation settings not seted on card");
