@@ -3,7 +3,7 @@
 namespace SO.Level
 {
    /// <summary>
-   /// Данные уровня, с их помощью можно не органичиваться в количествах уровнях.
+   /// Данные уровня, с их помощью можно не ограничиваться в количествах уровней
    /// Сделать например не 3, а 100
    /// </summary>
     [CreateAssetMenu(menuName = "SO/Level/Level Bundle", order = 0)]
@@ -18,7 +18,7 @@ namespace SO.Level
         {
             if (_countCells <= 0)
             {
-                _countCells = 1;
+                _countCells = 2;
             }
         }
     }
