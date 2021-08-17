@@ -55,7 +55,7 @@ namespace Cards.Spawner
 
             if (_bundles.Length == 0)
             {
-                throw new NullReferenceException("bundlws cards not found");
+                throw new Exception("bundlws cards not found");
             }
         }
 
