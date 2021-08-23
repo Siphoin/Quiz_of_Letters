@@ -9,9 +9,7 @@ namespace Others.TimeDestroyer
     {
         [Header("Время уничтожения"), SerializeField]
         private float _timeDestroy = 1;
-
-        private void Start () => Destroy(gameObject, _timeDestroy);
-
+        
         private void OnValidate ()
         {
             if (_timeDestroy <= 0)
@@ -19,6 +17,7 @@ namespace Others.TimeDestroyer
                 _timeDestroy = 1;
             }
         }
-
+        
+        private void Start () => Destroy(gameObject, _timeDestroy);
     }
 }
